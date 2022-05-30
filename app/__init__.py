@@ -21,14 +21,14 @@ def create_app(setting_module):
 
     app.register_blueprint(films_v1_0_bp)
 
-    register_error_hablder(app)
+    register_error_handlers(app)
 
     return app
 
 
-def register_error_hablder(app):
+def register_error_handlers(app):
     @app.errorhandler(Exception)
-    def handle_exeption_error(e):
+    def handle_exception_error(e):
         return jsonify({'msj': 'Internal server error'}), 500
 
     @app.errorhandler(405)
