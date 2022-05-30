@@ -10,6 +10,13 @@ class Film(db.Model, BaseModelMixin):
     actor = db.relationship('Actor', backref='film', lazy=False,
                             cascade='all, delete-orphan')
 
+    def __int__(self, title, length, year, director, actor=[]):
+        self.title = title
+        self.length = length
+        self.year = year
+        self.director = director
+        self.actor = actor
+
     def __repr__(self):
         return f'Film({self.title}))'
 
