@@ -3,6 +3,7 @@ from flask_restful import Api, Resource
 
 from .schemas import FilmSchema
 from ..models import Film, Actor
+from ...common.error_handling import ObjectNotFound
 
 films_v1_0_bp = Blueprint('films_v1_0_bp', __name__)
 
@@ -14,6 +15,8 @@ api = Api(films_v1_0_bp)
 class FilmListResource(Resource):
     def get(self):
         films = Film.get_all()
+        if films is None:
+            raise ObjectNotFound('La pelicula no existe')
         result = films_schema.dump(films, many=True)
         return result
 
