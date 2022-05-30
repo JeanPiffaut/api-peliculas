@@ -3,4 +3,3 @@ from flask_migrate import Migrate
 
 ma = Marshmallow()
 migrate = Migrate()
-
